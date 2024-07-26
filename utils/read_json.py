@@ -14,7 +14,7 @@ def read_jsonl(file_path):
     logging.info(f"Reading JSONL file: {file_path}")
     try:
         with open(file_path, 'r') as file:
-            data = [json.loads(line) for line in file]
+            data = [json.loads(line) for line in file if validate_json_schema(line) == True]
         logging.info(f"Successfully read {len(data)} records from {file_path}")
         return data
     except Exception as e:
